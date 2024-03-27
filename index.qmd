@@ -1,8 +1,12 @@
 ---
-title: TK-HOM
+title: Biomarker Infeksi Bakteri pada Febrile Neutropenia
 authors:
-  - name: Norah Jones
-    affiliation: The University
+  - name: dr. Kadek Adit Wiryadana
+    affiliation: Universitas Udayana
+    roles: writing
+    corresponding: true
+  - name: dr. Ngakan Wira Suastika, SpPD, K-HOM
+    affiliation: Universitas Udayana
     roles: writing
     corresponding: true
 bibliography: references.bib
@@ -10,3 +14,5 @@ bibliography: references.bib
 
 ## Section
 This is a simple placeholder for the manuscript's main document [@knuth84].
+
+wiryadana
