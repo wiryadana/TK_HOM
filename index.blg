@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: index.aux
+The style file: plos2015.bst
+Database file #1: references.bib
+Warning--I didn't find a database entry for "Fröhlich2023"
+Warning--I didn't find a database entry for "García2015"
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+You've used 40 entries,
+            3058 wiz_defined-function locations,
+            968 strings with 20129 characters,
+and the built_in function-call counts, 118253 in all, are:
+= -- 14862
+> -- 812
+< -- 0
++ -- 462
+- -- 203
+* -- 10805
+:= -- 12798
+add.period$ -- 197
+call.type$ -- 40
+change.case$ -- 0
+chr.to.int$ -- 0
+cite$ -- 40
+duplicate$ -- 7956
+empty$ -- 11484
+format.name$ -- 243
+if$ -- 27301
+int.to.chr$ -- 0
+int.to.str$ -- 40
+missing$ -- 428
+newline$ -- 240
+num.names$ -- 40
+pop$ -- 584
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 739
+stack$ -- 0
+substring$ -- 26929
+swap$ -- 1040
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 452
+width$ -- 42
+write$ -- 515
+(There were 2 warnings)
