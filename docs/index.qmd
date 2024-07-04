@@ -1,90 +1,160 @@
 ---
-title: Biomarker Infeksi Bakteri pada Febrile Neutropenia
+title: Peran Biomarker dalam Identifikasi Infeksi Bakteri pada Febrile Neutropenia Paska Kemoterapi
 authors:
   - name: dr. Kadek Adit Wiryadana
     affiliation: Universitas Udayana
     roles: writing
     corresponding: true
-  - name: dr. Ngakan Wira Suastika, SpPD, K-HOM
+  - name: dr. Ngakan Ketut Wira Suastika, SpPD, K-HOM
     affiliation: Universitas Udayana
     roles: writing
     corresponding: true
 bibliography: references.bib
 csl: wiryadana.csl
+tbl-cap-location: top
 ---
 
 ```{r, echo=F}
 library("tidyverse")
 library("googlesheets4")
+library("gt")
+library("gtExtras")
 ```
 
 ## Abstrak
 
-Kemajuan besar dalam kemoterapi pasien dengan penyakit keganasan menyisakan permasalahan terkait neutropenia sehingga pasien rentan terhadap infeksi. Walaupun terjadi peningkatan dalam kesintasan penyakit kanker, infeksi tetap menjadi komplikasi utama dari terapi keganasan dan menyebabkan sebagian besar kematian paska kemoterapi. Masalah ini akan dipersulit dengan dilema terkait pemberian antibiotik dan pemilihannya yang tepat. Saat ini pemberian terapi antibiotik masih menjadi rekomendasi, namun dengan pesatnya perkembangan bakteri resisten antibiotk, maka perlu evaluasi lebih lanjut terkait penanda infeksi bakteri yang dapat menjadi pedoman pemberian antibiotik. Walaupun telah banyak biomarker yang diteliti guna menjadi penanda infeksi bakteri, pedoman terbaru dari American Society of Clinical Oncology (ASCO) tetap menyatakan bahwa diperlukan lebih banyak penelitian sebelum biomarker dapat menjadi alat untuk menentukan apakah antibiotik diperlukan atau dapat ditunda pada kasus febrile neutropenia. Pada tulisan ini akan dibahas beberapa biomarker yang ditemukan memiliki makna klinis yang menjadi prediktor adanya bakterimia sistemik. 
+Major advances in chemotherapy for patients with malignant diseases opened for another problem, chemotherapy related febrile neutropenia leaving patients vulnerable to infection. Despite the increase in cancer survival, infection remains a major complication of malignancy and causes most post-chemotherapy related deaths. This problem will be complicated by the dilemma related to the administration of antibiotics and their proper selection. Currently, antibiotic therapy is still a recommendation, but with the rapid development of antibiotic resistant bacteria, further evaluation is needed regarding bacterial infection markers that can be a guideline for antibiotic administration. Although many biomarkers have been studied to quicly identify a bacterial infection, the latest guidelines from the American Society of Clinical Oncology (ASCO) still state that more research is needed before biomarkers can be a tool to determine whether antibiotics are needed or could be delayed in cases of febrile neutropenia. In this paper we will discuss some biomarkers found to have clinical value to predict the presence of systemic bacteremia (blood stream infection).
+
+**Keywords** : Chemotherapy, febrile neutropenia, procalcitonin, blood stream infection
 
 ## Pendahuluan
 
-Terdapat kemajuan besar dalam terapi pasien dengan penyakit keganasan selama beberapa dekade terakhir dengan demikian mampu menurunkan angka kematian akibat keganasan. Perkembangan ilmu dan teknologi telah menghasilkan serangkaian agen kemoterapi baru dan modalitas pengobatan modern lain yang telah berhasil diterapkan dalam praktik klinis, termasuk transplantasi sumsum tulang dan sel punca. Namun sebagian besar pilihan pengobatan ini membuka sebuah titik kelemahan yakni penekanan terhadap imunitas.[@Zimmer2019] Neutropenia khususnya masih merupakan kelainan imun yang paling signifikan akibat kemoterapi sehingga menyebabkan pasien rentan terhadap infeksi. Meskipun terdapat peningkatan dalam kelangsungan hidup jangka panjang, infeksi tetap menjadi komplikasi utama dari terapi keganasan dan menyebabkan sebagian besar kematian paska kemoterapi. Masalah ini akan dipersulit dengan dilema terkait pemberian antibiotik dan pemilihannya yang tepat.[@sipsas]
+Terdapat kemajuan besar dalam terapi pasien dengan penyakit keganasan selama beberapa dekade terakhir yang berkontribusi atas meningkatnya kesintasan akibat keganasan. Perkembangan ilmu dan teknologi telah menghasilkan serangkaian agen kemoterapi baru dan modalitas terapi modern lain yang telah berhasil diterapkan dalam praktik klinis, namun kemajuan terapi ini membuka sebuah titik kelemahan yakni penekanan terhadap fungsi imunitas.[@Zimmer2019] Neutropenia khususnya masih merupakan kelainan imun yang paling signifikan akibat kemoterapi sehingga menyebabkan pasien rentan terhadap infeksi. Meskipun terdapat peningkatan dalam kelangsungan hidup jangka panjang, infeksi tetap menjadi komplikasi utama dari terapi keganasan dan menyebabkan sebagian besar kematian paska kemoterapi.
 
-Perkembangan terapi terkait febrile neutropenia pada dekade terakhir cukup substansial.[@sipsas] Perkembangan pola agen infeksi serta resistensi antibiotik memberikan tantangan khusus dalam mengembangkan pedoman universal terkait febril neutropenia. Pada kasus febril neutropenia, sampai saat ini dianut bahwa pemberian antibiotik sedini mungkin merupakan pilar utama tatalaksana standar pada berbagai institusi. Adanya perubahan tren resistensi bakteri menyebabkan pemilihan antibiotik harus mengikuti pola kepekaan kuman lokal, sehingga idealnya pedoman pemilihan antibiotik harus menjadi perhatian penting untuk diperbaharui secara berkala.[@sipsas]
+Perkembangan terapi keganasan tidak diikuti perkembangan terapi terkait febrile neutropenia. Tatalaksan febril neutropenia hingga saat ini bertumpu pada pemberian antibiotik sedini mungkin. Namun berbagai penelitian telah menemukan bahwa sebagian kasus febrile neutropenia tidak dapat dikonfirmasi adanya infeksi bakteri pada pemeriksaan mikrobiologi. Hal ini juga dipersulit dengan temuan klinis tidak dapat dengan baik membedakan apakah agen infeksinya berupa virus, bakteri maupun fungi. Disisi lain pemilihan antibiotik awal yang tepat juga menjadi pertimbangan yang sulit. Adanya perubahan tren resistensi bakteri menyebabkan pemilihan antibiotik harus mengikuti pola kepekaan kuman lokal, sehingga idealnya pedoman pemilihan antibiotik harus menjadi perhatian penting untuk diperbaharui secara berkala.[@sipsas] [@sipsas]
 
-Kecenderungan terapi bertumpu pada monoterapi antibiotik spektrum luas generasi terbaru menggantikan pola terapi klasik dengan kombinasi antibiotik. Pemberian monoterapi antibiotik secara empiris disisi lain dapat meningkatkan risiko resistensi bakteri.[@sipsas] Selain itu, febril neutropenia akibat agen infeksi non bakterial tentu akan menempatkan pemberian antibiotik sebagai sesuatu yang tidak bermanfaat bahkan cenderung merugikan. Solusi yang diperlukan adalah berupa modalitas diagnostik yang cepat memberikan informasi terkait etiologi febril neutropenia sehingga dapat membantu dalam mengambil keputusan apakah pemberian antibiotik dapat menjadi sesuatu yang bermanfaat.
+Saat ini pedoman dari American Society of Clinical Oncology merekomendasikan terapi yang bertumpu pada monoterapi antibiotik spektrum luas generasi terbaru yang sebelumnya menggantikan pola terapi klasik dengan kombinasi antibiotik. Pemberian monoterapi antibiotik secara empiris disisi lain dapat meningkatkan risiko resistensi bakteri.[@sipsas] Lebih lanjut, pemberian antibiotik pada infeksi non bakterial tentu tidak akan memberikan manfaat bahkan cenderung merugikan. Solusi yang diperlukan adalah berupa modalitas diagnostik berupa biomarker yang dapat mendeteksi adanya infeksi bakteri pada pasien dengan febril neutropenia sehingga dapat membantu dalam mengambil keputusan apakah pemberian antibiotik dapat menjadi sesuatu yang bermanfaat.
 
 ## Febril Neutropenia
 
-Kemoterapi sitotoksik dan radioterapi sebagian besar memediasi efek antineoplastiknya melalui pengaruh replikasi DNA. Salah satu komplikasi dari supesi replikasi DNA adalah penurunan jumlah sel, salah satunya adalah keadaan neutropenia. Demam Neutropenia/ Febrile Neutropenia (FN) adalah kondisi yang berpotensi mengancam nyawa yang didefinisikan sebagai demam dengan suhu oral tunggal ≥38.3 °C (101 °F) atau suhu ≥38.0 °C (100.4 °F) yang dipertahankan selama periode 1 jam, dikombinasikan dengan neutropenia berat yang didefinisikan sebagai jumlah neutrofil absolut (ANC) \<500 sel/mm^3^ atau ANC yang diperkirakan menurun hingga \<500 sel/mm^3^ selama 48 jam berikutnya.[@Zimmer2019] FN merupakan komplikasi pada hampir 50% pasien dengan tumor padat dan pada \>80% pasien dengan keganasan hematologi yang menjalani kemoterapi atau setelah transplantasi sel induk hematopoietik (HSCT) dan paling sering terjadi sebagai akibat dari translokasi bakteri usus disertai tidak adanya antimikrobiosis langsung yang mediasi oleh neutrofil dan rendahnya respons efektor sistem imun. Faktor risiko FN termasuk ANC \<100 sel/mm^3^ selama \>7 hari, usia lebih tua, *performance* status buruk, adanya kondisi komorbiditas, dan penyakit stadium lanjut.[@baluch2019infections] FN dianggap sebagai keadaan darurat medis, dengan angka kematian keseluruhan sebesar 5% hingga 20%, dan dapat meningkat hingga 50% pada pasien yang mengalami syok.[@carmona-bayonas2015]
+Kemoterapi sitotoksik dan radioterapi sebagian besar memediasi efek antineoplastiknya melalui pengaruh replikasi DNA. Salah satu komplikasi dari supresi replikasi DNA adalah penurunan jumlah sel, salah satunya adalah keadaan neutropenia. Demam Neutropenia/ Febril Neutropenia (FN) adalah kondisi yang berpotensi mengancam nyawa yang didefinisikan sebagai demam dengan suhu oral tunggal ≥38.3 °C (101 °F) atau suhu ≥38.0 °C (100.4 °F) yang dipertahankan selama periode 1 jam, disertai dengan neutropenia berat yang didefinisikan sebagai *absolute neutrophil count* (ANC) \<500 sel/mm^3^ atau ANC yang diperkirakan menurun hingga \<500 sel/mm^3^ selama 48 jam berikutnya.[@Zimmer2019] FN merupakan komplikasi pada hampir 50% pasien dengan tumor padat dan pada \>80% pasien dengan keganasan hematologi yang menjalani kemoterapi atau setelah transplantasi sel induk hematopoietik (HSCT). FN terjadi sebagian besar sebagai akibat dari translokasi bakteri usus disertai tidak adanya antimikrobiosis langsung yang mediasi oleh neutrofil dan rendahnya respons efektor sistem imun. Faktor risiko FN termasuk ANC \<100 sel/mm^3^ selama \>7 hari, usia lebih tua, *performance status* buruk, adanya kondisi komorbiditas, dan penyakit keganasan stadium lanjut.[@baluch2019infections] FN dianggap sebagai keadaan darurat medis, dengan angka kematian keseluruhan sebesar 5% hingga 20%, dan dapat meningkat hingga 50% pada pasien yang mengalami syok.[@carmona-bayonas2015] Episode demam neutropenia diklasifikasikan menjadi tiga kelompok:[@García2015]. Demam yang tidak diketahui penyebab (*Fever unknown origin* / FUO) didefinisikan sebagai demam yang infeksinya tidak dapat dibuktikan secara klinis maupun radiologis dan hasil uji mikrobiologisnya negatif. kelompok kedua yakni infeksi yang terdokumentasi secara klinis (Clinically Documented Infection/CDI), yaitu ketika terdapat tanda atau gejala klinis dan temuan radiologis atau/dan laboratorium atas suatu infeksi, namun tanpa bukti mikrobiologis. Kelompok ketiga yakni infeksi yang terdokumentasi secara mikrobiologis (MDI) yang meliputi bakteremia (microbiologically documented in fection with bacteremia (MDIB)) dan infeksi lokal yang terdokumentasi secara mikrobiologis tanpa hasil kultur darah positif (infeksi yang didokumentasikan secara mikrobiologis tanpa bakteremia (MDInB).
 
-Pada kondisi demam dan neutropenia pada pasien dengan keganasan diperlukan evaluasi yang tepat, penilaian risiko, dan penatalaksanaan pasien yang tepat untuk menghindari hasil klinis yang buruk, dan mencegah kematian. Klinis yang pertama kali mengevaluasi pasien tersebut harus membuat keputusan penting terkait tatalaksana selanjutnya. Tidak jarang akibat tidak adanya penjelasan alternatif, dokter harus berasumsi bahwa demam pada pasien dengan neutropenia pasca terapi kanker adalah akibat dari infeksi bakteri. Disisi sebaliknya, dokter dituntut untuk dapat secara bijak menggunakan antibiotik sehingga keputusan untuk memberikan antibiotik dan menilai risiko pasien kanker yang mengalami demam neutropenia dapat menjadi suatu tantangan. Pendekatan diagnostik awal harus memaksimalkan peluang untuk menegakkan diagnosis klinis dan mikrobiologis yang dapat mempengaruhi pilihan dan prognosis antibakteri.[@taplitz2018]
+Pada kondisi demam dan neutropenia pada pasien dengan keganasan diperlukan evaluasi dan penatalaksanaan pasien yang tepat untuk menghindari luaran klinis yang buruk dan mencegah kematian. Klinisi yang pertama kali mengevaluasi pasien tersebut harus membuat keputusan penting terkait tatalaksana selanjutnya. Tidak jarang akibat tidak adanya penjelasan alternatif, dokter harus berasumsi bahwa demam pada pasien dengan neutropenia paska kemoterapi adalah akibat dari infeksi bakteri. Disisi sebaliknya, dokter dituntut untuk dapat secara bijak menggunakan antibiotik sehingga keputusan untuk memberikan antibiotik dan menilai risiko pasien kanker yang mengalami demam neutropenia dapat menjadi suatu tantangan. Pendekatan diagnostik awal harus memaksimalkan peluang untuk menegakkan diagnosis klinis dan mikrobiologis yang dapat membantu memilih antibiotik yang tepat dan meminimalisir risiko resistensi.[@taplitz2018]
 
 ## Biomarker Infeksi Bakteri
 
-Terdapat variasi yang luas pada patogen yang ditemukan terlibat dalam proses febril neutropenia. Hal ini salah satunya dijelaskan karena sumber utama patogen pada kondisi imunokompromised adalah flora endogen. Namun, banyak mikroorganisme eksogen lain dengan virulensi rendah yang dapat diperoleh dari udara atau air yang terkontaminasi atau dari kontak dengan pasien, personel, atau peralatan lain dapat menjadi invasif dan menyebabkan infeksi pada pasien dengan kondisi neutropenia. Secara historis, basil gram negatif yang muncul dari saluran pencernaan telah menjadi patogen utama pada inang neutropenia. Antara tahun 1960an hingga pertengahan tahun 1970an, *Escherichia coli*, *Klebsiella spesies*, dan *Pseudomonas aeruginosa* menyumbang sebagian besar infeksi yang didokumentasikan secara mikrobiologis di sebagian besar pusat layanan kanker. Sejak diperkenalkannya beta-laktam spektrum luas, beberapa institusi di Amerika Serikat dan Eropa telah mengalami penurunan bakteremia bakteri batang gram negatif dan peningkatan infeksi akibat kokus gram positif.[@sipsas] Berikut akan dijabarkan beberapa marker biologis (biomarker) yang dapat bermanfaat sebagai penanda infeksi bakteri.
+Terdapat variasi yang luas pada patogen yang ditemukan terlibat dalam proses febril neutropenia. Hal ini salah satunya dijelaskan karena sumber utama patogen pada kondisi imunokompromised adalah flora endogen. Namun, banyak mikroorganisme eksogen lain dengan virulensi rendah yang dapat diperoleh dari udara atau air yang terkontaminasi atau dari kontak dengan pasien lain, personel, atau peralatan yang dapat menjadi invasif dan menyebabkan infeksi pada kondisi neutropenia. Secara historis, basil gram negatif yang muncul dari saluran pencernaan telah menjadi patogen utama pada pasien neutropenia. Antara tahun 1960an hingga pertengahan tahun 1970an, *Escherichia coli*, *Klebsiella spesies*, dan *Pseudomonas aeruginosa* menyumbang sebagian besar infeksi yang dikonfirmasi secara mikrobiologis di sebagian besar pusat layanan kanker. Sejak diperkenalkannya beta-laktam spektrum luas, beberapa institusi di Amerika Serikat dan Eropa telah mengalami penurunan bakteremia bakteri batang gram negatif dan peningkatan infeksi akibat kokus gram positif.[@sipsas] Berikut akan dijabarkan beberapa marker biologis yang dapat bermanfaat sebagai penanda infeksi bakteri.
 
 ### Biomarker Hematologi
 
-#### Jumlah Leukosit
+Saat terjadi infeksi bakteri, neutrofil dengan cepat direkrut ke fokus infeksi dan menginisiasi respon imun, mengikat, dan mengfagositosis mikroorganisme.[@bernardi2024] Sejumlah besar neutrofil dikonsumsi di lokasi infeksi sehingga harus terus disuplai ke tempat yang terinfeksi dari sumsum tulang melalui aliran darah. Oleh karena itu, perubahan dinamis terjadi pada jumlah leukosit (WBC) dan jumlah absolut neutrofil (ANC) yang mungkin terjadi mencerminkan kondisi real-time pasien dengan infeksi bakteri. Namun, belakangan ini tinjauan sistematis dan meta-analisis studi diagnostik menunjukkan bahwa sel darah putih memberikan sensitivitas (58%) dan spesifisitas (73%) relatif rendah atau lebih rendah jika dibandingkan dengan prokalsitonin (PCT) dan *C-reactive protein* (CRP).[@Yo2012] Sebuah penelitian yang membandingkan WBC, ANC, dan CRP sehubungan dengan timbulnya demam menemukan bahwa CRP memiliki sensitivitas dan spesifisitas yang lebih baik dibandingkan WBC atau ANC, tanpa memandang durasi demam.[@pratt2007]
 
-Saat terjadi infeksi bakteri, neutrofil dengan cepat direkrut ke fokus infeksi dan menginisiasi respon imun, mengikat, dan mengfagositosis mikroorganisme.[@bernardi2024] Sejumlah besar neutrofil dikonsumsi di lokasi infeksi sehingga harus terus disuplai ke tempat yang terinfeksi dari sumsum tulang melalui aliran darah. Oleh karena itu, perubahan dinamis terjadi pada jumlah leukosit (WBC) dan jumlah absolut neutrofil (ANC) yang mungkin terjadi mencerminkan kondisi real-time pasien dengan infeksi bakteri. Namun, belakangan ini tinjauan sistematis dan meta-analisis studi diagnostik menunjukkan bahwa sel darah putih memberikan sensitivitas (58%) dan spesifisitas 73% rendah, atau lebih rendah jika dibandingkan dengan prokalsitonin (PCT) dan *C-reactive protein* (CRP).[@Yo2012] Sebuah penelitian yang membandingkan WBC, ANC, dan CRP sehubungan dengan timbulnya demam menemukan bahwa CRP memiliki sensitivitas dan spesifisitas yang lebih baik dibandingkan WBC atau ANC, tanpa memandang durasi demam.[@pratt2007]
-
-#### Indeks terkait trombosit
-
-Penelitian telah mengidentifikasi trombosit sebagai salah satu komponen pertama dalam respons penyakit infeksi yang melibatkan proses fagositosis patogen atas peran dari protein yang disimpan dalam granul platelet. Indeks trombosit yang beragam, seperti PNLR/ *platelet to neutrophil-lymphocyte ratio* (rasio trombosit terhadap neutrofil/limfosit), PNR/ *platelet to neutrophil ratio* (rasio trombosit terhadap neutrofil) dan protein yang disekresikan, seperti sP-selectin, CXCL4, CXCL7, dan serotonin, telah dipelajari sebagai penanda untuk membedakan infeksi virus dan bakteri.[@semple2011] Mengingat pasien yang datang ke UGD dengan demam dini (\<12 jam), nilai PNLR lebih tinggi telah diamati pada mereka yang menderita infeksi bakteri.[@vassiliou2014a] Molekul lain yang ditemukan pada platelet dan dapat menjadi penanda infeksi bakteri adalah CXCL7 dan sP-selectin. Kedua marker tersebut baik secara tunggal dan digabungkan, secara statistik signifikan untuk membedakan sepsis dan infeksi bakteri dari penyebab agen infeksi lain.[@zonneveld2014] CXCL4 memiliki peran dalam respon imun terhadap virus, dan peningkatannya dalam aliran darah tidak signifikan pada pasien dengan infeksi bakteri. Namun nilai-nilai tersebut belum terstandarisasi dan penelitian lebih lanjut diperlukan untuk memastikan nilai normal pada populasi sehat dan dalam kondisi klinis yang beragam.[@heijnen2015]
+Trombosit selain berperan dalam hemostasis juga merupakan salah satu komponen pertama dalam respons infeksi yang melibatkan proses fagositosis patogen melalui aktivitas protein yang disimpan dalam granulnya. Indeks trombosit yang beragam, seperti PNLR/*platelet to neutrophil-lymphocyte ratio* (rasio trombosit terhadap neutrofil/limfosit), PNR/ *platelet to neutrophil ratio* (rasio trombosit terhadap neutrofil) dan protein yang disekresikan, seperti sP-selectin, CXCL4, CXCL7, dan serotonin, telah diteliti sebagai penanda untuk membedakan infeksi virus dan bakteri.[@semple2011] Mengingat pasien yang datang ke UGD dengan demam onset \<12 jam, nilai PNLR lebih tinggi telah diamati pada mereka yang menderita infeksi bakteri.[@vassiliou2014a] Molekul lain yang ditemukan pada platelet dan dapat menjadi penanda infeksi bakteri adalah CXCL7 dan sP-selectin. Kedua marker tersebut baik secara tunggal dan dikombinasikan secara statistik bermakna untuk membedakan sepsis akibat infeksi bakteri dari penyebab agen infeksi lain.[@zonneveld2014]
 
 ### Biomarker Inflamasi
 
 #### C-Reactive protein
 
-C-reactive Protein (CRP) saat ini menjadi marker inflamasi yang paling banyak diperiksa. CRP merupakan molekul yang disintesis oleh liver setelah mendapatkan stimulasi sitokin (IL-1 Beta, IL-6 dan TNF-Alpha) dalam waktu 4-6 jam setelah terjadi kerusakan jaringan. Kadar CRP dalam darah akan mencapai puncak dalam 36-50 jam paska stimulasi sitokin terkait sehingga nilai CRP harus diinterpretasikan dengan hati-hati ketika demam terjadi \<12 jam. CRP merupakan salah satu komponen yang berperan dalam imunitas fubuh melalui aktivasi komplemen melalui jalur klasik, modulasi aktivitas fagositik sel dan meningkatkan *cell-mediated cytotoxicity*.[@bernardi2024]
+*C-reactive Protein* (CRP) saat ini menjadi marker inflamasi yang paling banyak diperiksa. CRP merupakan molekul yang disintesis oleh liver setelah mendapatkan stimulasi sitokin (IL-1 Beta, IL-6 dan TNF-Alpha) dalam waktu 4-6 jam setelah terjadi kerusakan jaringan. Kadar CRP dalam darah akan mencapai puncak dalam 36-50 jam paska stimulasi sitokin terkait sehingga nilai CRP harus diinterpretasikan dengan cermat ketika pemeriksaan dilakukan pada kondisi demam terjadi \<12 jam. CRP merupakan salah satu komponen yang berperan dalam imunitas fubuh melalui aktivasi komplemen, modulasi aktivitas fagositik sel dan *cell-mediated cytotoxicity*.[@bernardi2024]
 
-Peningkatan kadar CRP dapat disebabkan oleh kondisi selain infeksi, misalnya trauma, keganasan, gangguan rematologi, luka bakar dan pankreatitis sehingga nilai CRP harus diinterpretasikan dengan hati-hati dalam kasus ini.[@pepys2003] Sebaliknya, penurunan atau supresi kadar CRP dapat terjadi pada kondisi gagal hati (*liver failure*) dan imunokompromais.[@dyer2018] Namun demikian, beberapa penelitian menunjukkan kegunaan CRP untuk identifikasi dini demam yang merupakan akibat dari infeksi bakteri.[@verbakel2017] Dilema krusial dalam praktik klinis adalah ambang batas yang digunakan untuk identifikasi infeksi bakteri. Nilai batas yang sangat rendah akan menjadi sangat sensitif namun kurang spesifik, dan nilai batas yang sangat tinggi akan bersifat spesifik namun kurang sensitif. Dalam penelitian terbaru pada populasi pediatri yang dilakukan oleh Verbakel dkk., nilai batas 75 mg/L dapat digunakan sebagai ambang nilai CRP untuk menentukan pasien yang memiliki risiko lebih besar mengalami infeksi bakteri berat dan batas CRP sebesar 20 mg/L mengidentifikasi anak-anak yang berisiko rendah.
+```{r}
+#| label: tbl-crp
+#| tbl-cap: "Data performa diagnostik C-reactive Protein sebagai marker infeksi bakteri pada pasien dewasa dengan febrile neutropenia."
+
+crp <- googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1W8dIyIs-BTYasFA3WDrca2_leGlS1R4sMpscfRQcShY/edit?gid=0#gid=0", sheet = "crp")
+
+dt_crp <- crp %>% 
+  dplyr::mutate(
+    Sensitivitas = Sensitivitas * 100,
+    Spesifisitas = Spesifisitas * 100
+  ) %>%
+  gt() %>% 
+  gt_plt_bar_pct(
+    Sensitivitas,
+    labels = TRUE,
+    scaled = TRUE
+  ) %>%
+  gt_plt_bar_pct(
+    Spesifisitas,
+    labels = TRUE,
+    fill = "forestgreen",
+    scaled = TRUE
+  )
+
+dt_crp
+```
+
+
+Peningkatan kadar CRP dapat disebabkan oleh kondisi selain infeksi, misalnya trauma, keganasan, gangguan rematologi, luka bakar dan pankreatitis sehingga nilai CRP harus diinterpretasikan dengan cermat dalam kasus ini.[@pepys2003] Sebaliknya, penurunan atau supresi kadar CRP dapat terjadi pada kondisi gagal hati (*liver failure*) dan imunokompromais.[@dyer2018] Namun demikian, beberapa penelitian menunjukkan kegunaan CRP untuk identifikasi dini demam yang merupakan akibat dari infeksi bakteri.[@verbakel2017] kesulitan dalam praktik klinis adalah ambang batas yang digunakan untuk identifikasi infeksi bakteri. Nilai batas yang sangat rendah akan menjadi sangat sensitif namun kurang spesifik, dan nilai batas yang sangat tinggi akan bersifat spesifik namun kurang sensitif. Performa diagnostik CRP dirangkum pada tabel [-@tbl-crp].
 
 #### Procalcitonin
 
-Prokalsitonin (PCT) adalah prekursor protein asam amino untuk kalsitonin yang diproduksi oleh sel parafollicular. Pada kondisi normal, kadar PCT serum lebih rendah dari 0,05 ng/mL, sedangkan pada infeksi bakteri dapat meningkat hingga 700 ng/L. Selama infeksi bakteri, tempat produksi PCT tidak terbatas pada sel neuroendokrin. Pelepasan PCT diinduksi dengan meningkatkan ekspresi gen CALC1 pada sel di seluruh tubuh, dipicu oleh endotoksin atau faktor humoral, yaitu IL-1, TNF-alfa, dan IL-6. Konsentrasi PCT meningkat lebih cepat dibandingkan kadar CRP pada pasien SBI. Kadar PCT mulai meningkat pada 2 jam sejak awal infeksi dan mencapai puncak serum pada 24 hingga 36 jam oleh karena itu PCT telah terbukti menjadi biomarker yang lebih unggul dibandingkan dengan CRP untuk mendeteksi infeksi bakteri di UGD.[@Principi2017; @bernardi2024]
+Prokalsitonin (PCT) adalah protein prekursor untuk kalsitonin yang diproduksi oleh sel parafollicular. Pada kondisi normal, kadar PCT serum lebih rendah dari 0,05 ng/mL, sedangkan pada infeksi bakteri dapat meningkat hingga 700 ng/L. Selama infeksi bakteri, tempat produksi PCT tidak terbatas pada sel neuroendokrin. Pelepasan PCT diinduksi dengan meningkatkan ekspresi gen CALC1 pada sel di seluruh tubuh, dipicu oleh endotoksin atau faktor humoral, yaitu IL-1, TNF-alfa, dan IL-6. Konsentrasi PCT meningkat lebih cepat dibandingkan kadar CRP pada pasien dengan infeksi bakteri. Kadar PCT pada serum mulai meningkat pada 2 jam sejak awal infeksi dan mencapai puncak pada 24 hingga 36 jam oleh karena itu PCT telah terbukti menjadi biomarker yang lebih unggul dibandingkan dengan CRP untuk mendeteksi infeksi bakteri di UGD.[@Principi2017; @bernardi2024] Performa diagnostik PCT dirangkum pada tabel [-@tbl-pct].
+
+```{r}
+#| label: tbl-pct
+#| tbl-cap: "Data performa diagnostik Procalcitonin sebagai marker infeksi bakteri pada pasien dewasa dengan febrile neutropenia."
+
+pct <- googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1W8dIyIs-BTYasFA3WDrca2_leGlS1R4sMpscfRQcShY/edit?gid=0#gid=0", sheet = "pct")
+
+dt_pct <- pct %>% 
+  dplyr::mutate(
+    Sensitivitas = Sensitivitas * 100,
+    Spesifisitas = Spesifisitas * 100
+  ) %>%
+  gt() %>% 
+  gt_plt_bar_pct(
+    Sensitivitas,
+    labels = TRUE,
+    scaled = TRUE
+  ) %>%
+  gt_plt_bar_pct(
+    Spesifisitas,
+    labels = TRUE,
+    fill = "forestgreen",
+    scaled = TRUE
+  )
+
+dt_pct
+```
+
 
 #### Cytokines dan Chemokines
 
-Interaksi reseptor mirip Tol (TLR) yang terletak di permukaan membran­ permukaan sel penyaji antigen (APC) dan monosit dengan kelompok *pattern recognition receptor* (PAMPs) menghasilkan inisiasi kaskade pensinyalan dan ekspresi gen yang terlibat dalam peradangan, imunitas adaptif, dan metabolisme sel. Hal ini menyebabkan ekspresi gen yang disebut "*early activation genes*" dan pelepasan sitokin (misalnya IFN- γ , IL-1, IL-6, IL-8, IL-12) serta komponen komplemen dan koagulasi.[@Jarczak2021] Peningkatan sitokin pro dan anti-inflamasi secara sistemik pada fase awal dianggap sebagai ciri klasik proses infeksi bakteri. Sitokin dan kemokin telah dianggap sebagai biomarker infeksi bakteri yang menjanjikan karena keterlibatan awal dalam respon imun tubuh terhadap infeksi, terutama dalam beberapa tahun terakhir berkat adanya kemajuan dalam teknis pendeteksian sitokin dan kemokin dalam sampel darah. Selain itu, produksi CRP dan PCT bergantung pada pelepasan sitokin, diperkirakan bahwa pengukuran sitokin dapat memberikan evaluasi perkembangan sepsis yang lebih awal dan lebih efektif dibandingkan dengan biomarker yang digunakan secara tradisional.[@Boscarino2023]
+Peningkatan sitokin pro dan anti-inflamasi secara sistemik pada fase awal dianggap sebagai penanda klasik proses infeksi bakteri. Sitokin dan kemokin telah dianggap sebagai biomarker infeksi bakteri yang menjanjikan karena keterlibatan awal dalam respon imun tubuh terhadap infeksi. Produksi CRP dan PCT bergantung pada pelepasan sitokin sehingga diperkirakan bahwa pengukuran sitokin dapat memberikan evaluasi perkembangan infeksi yang lebih awal dan lebih efektif dibandingkan dengan biomarker yang telah diketahui sebelumnya.[@Boscarino2023]
 
-Salah satu sitokin yang banyak diteliti adalah dari kelompok interleukin. Interleukin-6 (IL-6) terutama dalam perannya pada inflamasi sistemik. Hal Ini digambarkan sebagai sitokin pro-inflamasi fase akut, yang meningkatkan kadarnya dalam darah selama rentang waktu 6 jam pertama selama infeksi bakteri. Onset ini lebih awal dari peningkatan CRP.[@Barichello2022; @Biron2015] Selain IL-6, peran penting peningkatan kadar IL-10 dalam respons anti-inflamasi ditemukan menjadi prediktor luaran yang lebih buruk pada pasien neutropenia paska kemoterapi dengan sepsis. Pada temuan terbaru, IL-10 muncul dengan spesifisitas tinggi dan sensitivitas sedang. Walaupun IL-6 menurun dengan cepat dalam 12 jam pertama sejak timbulnya infeksi pada darah, IL-10 cenderung bertahan lebih lama selama keadaan septik.[@bernardi2024]
+Salah satu sitokin yang banyak diteliti adalah dari kelompok interleukin. Interleukin-6 (IL-6) terutama dalam perannya pada inflamasi sistemik. Hal Ini digambarkan sebagai sitokin pro-inflamasi fase akut, yang meningkatkan kadarnya dalam darah selama rentang waktu 6 jam pertama selama infeksi bakteri. Onset ini lebih awal dari peningkatan CRP.[@Barichello2022; @Biron2015] Selain IL-6, peran penting peningkatan kadar IL-10 dalam respons anti-inflamasi ditemukan menjadi prediktor luaran yang lebih buruk pada pasien neutropenia paska kemoterapi dengan sepsis. Pada temuan terbaru, IL-10 muncul dengan spesifisitas tinggi dan sensitivitas sedang. Walaupun IL-6 menurun dengan cepat dalam 12 jam pertama sejak timbulnya infeksi pada darah, IL-10 cenderung bertahan lebih lama selama keadaan septik.[@bernardi2024] Performa diagnostik IL-6 dirangkum pada tabel [-@tbl-il6].
 
-Peran diagnostik dari biomarker secara tunggal telah banyak diteliti, namun banyak penulis menyatakan keunggulan kombinasi biomarker darah dibandingkan tes individual dalam diagnosis banding etiologi infeksi.[@theodosiou2019; @tamelyte2019] Kombinasi WBC, ANC, CRP, IL-2, dan IL-6 meningkatkan sensitivitas hingga 96%, spesifisitas 81%, dan besar AUC 0,942 (CI 95%, 0,859 hingga 0984) dalam menentukan infeksi akibat bakteri dibandingkan yang etiologi lain.[@zeng2022] Demikian pula, dengan mencocokkan CRP dengan kadar IL-10 diperoleh nilai diagnostik yang lebih tinggi dalam menentikan etiologi bakteri (spesifisitas dari 77% menjadi 98%, sensitivitas 75%.[@bernardi2024]
+```{r}
+#| label: tbl-il6
+#| tbl-cap: "Data performa diagnostik Interleukin-6 sebagai marker infeksi bakteri pada pasien dewasa dengan febrile neutropenia."
 
-Studi pendahuluan beberapa waktu yang lalu menunjukkan hasil yang baik mengenai spesifisitas IL-27 dalam prediksi awal infeksi bakteri pada pasien kondisi sakit kritis. Dengan menggunakan database ekspresi genom anak-anak kritis di UGD pediatrik, gen prediktor yang mengkode protein IL-27 khususnya, EB13 (subunit dari IL-27), tampaknya memiliki peran prediktif yang tinggi terhadap infeksi bakteri (lebih dari 90%). Dibandingkan dengan PCT, IL-27 berkinerja lebih baik dalam membedakan infeksi bakteri dan virus. Temuan ini, meskipun masih awal, mengarah pada pertimbangan IL-27 sebagai biomarker yang efektif dalam sepsis bakterial, menunjukkan spesifisitas 95% dalam mendeteksi infeksi.[@Hanna2015; @Wong2012a]
+il6 <- googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1W8dIyIs-BTYasFA3WDrca2_leGlS1R4sMpscfRQcShY/edit?gid=0#gid=0", sheet = "il6")
 
-##### Interleukines
+dt_il6 <- il6 %>% 
+  dplyr::mutate(
+    Sensitivitas = Sensitivitas * 100,
+    Spesifisitas = Spesifisitas * 100
+  ) %>%
+  gt() %>% 
+  gt_plt_bar_pct(
+    Sensitivitas,
+    labels = TRUE,
+    scaled = TRUE
+  ) %>%
+  gt_plt_bar_pct(
+    Spesifisitas,
+    labels = TRUE,
+    fill = "forestgreen",
+    scaled = TRUE
+  )
 
-Van Houten dkk. menemukan bahwa dengan pengujian yang menggabungkan tiga biomarker, yaitu TRAIL, IP-10, dan CRP, dapat membedakan infeksi bakteri dan virus pada pasien demam dengan sensitivitas 86,7% dan spesifisitas 91,1%.[@van2017] Dalam penelitian berbasis proteomik yang berfokus pada respon imun inang, menunjukkan bahwa kombinasi ketiga biomarker ini menunjukkan parameter diagnostik yang lebih baik dibandingkan dengan kombinasi biomarker inflamasi rutin pada pasien yang menderita demam dengan dengan etiologi belum diketahui. Papan et al., dalam studi kohort prospektif multinasional, memvalidasi kinerja diagnostik dari TRAIL, IP-10, dan CRP dalam kohort luas pasien anak dengan infeksi saluran pernafasan atau demam tanpa etiologi yang diketahui, menunjukkan kemampuannya untuk mendukung diagnosis etiologi virus dan mengurangi jumlah peresepan antibiotik pada kondisi demam.[@Papan2022] Interaksi antara CRP, IP-10 dan TRAIL diilustrasikan pada @fig-CRPIP10TRAIL
+dt_il6
+```
 
-[![Interact CRP, IP-10 dan TRAIL sebagai marker infeksi](image/infection_viralvsbacterial.jpg){#fig-CRPIP10TRAIL .lightbox fig-align="center"}](https://www.mdpi.com/2218-273X/14/1/97)
 
-##### Trail
 
-*Tumor necrosis factor-related apoptosis-inducing ligand* (TRAIL) adalah protein transmembran tipe II yang termasuk dalam superfamili TNF terlibat dalam regulasi respon imun bawaan dan adaptif.[@Gyurkovska2016] TRAIL terlibat dalam sepsis dengan menginduksi apoptosis sel inflamasi dan menurunkan regulasi inflamasi. Banyak peneliti telah mengeksplorasi hubungan antara kadar TRAIL terlarut (sTRAIL) pada pasien septik dan risiko kematian dan menemukan bahwa tingkat sTRAIL yang rendah tampaknya dikaitkan dengan risiko kematian yang tinggi, dengan pasien yang sintas memiliki tingkat sTRAIL yang jauh lebih tinggi.[@Papan2023; @Fröhlich2023; @Ashkenazi-Hoffnung2018]
-
-##### IP-10
-
-IP-10 (*Interferon-gamma-inducible protein 10*) adalah kemokin yang diekspresikan oleh sel penyaji antigen sebagai respons terhadap IFN- γ dan menarik sel T yang teraktivasi ke fokus peradangan.[@Ashkenazi-Hoffnung2021] Biomarker ini berperan dalam respon terhadap infeksi bakteri, khususnya dalam diagnosis dan penatalaksanaan infeksi saluran kemih, TBC, dan penyakit autoimun.[@van2017]
+Selain diteliti secara tunggal, banyak penulis menyatakan keunggulan kombinasi biomarker darah dibandingkan tes individual dalam diagnosis banding etiologi infeksi.[@theodosiou2019; @tamelyte2019] Kombinasi WBC, ANC, CRP, IL-2, dan IL-6 meningkatkan sensitivitas hingga 96%, spesifisitas 81%, dan besar AUC 0,942 (CI 95%, 0,859 hingga 0984) dalam menentukan infeksi akibat bakteri dibandingkan yang etiologi lain.[@zeng2022] Demikian pula dengan mengkombinasikan CRP dengan kadar IL-10 diperoleh nilai diagnostik yang lebih tinggi dalam menentukan infeksi bakteri (spesifisitas dari 77% menjadi 98%, sensitivitas 75%.[@bernardi2024]
 
 ### Molekul Adhesi Sel
 
@@ -92,52 +162,87 @@ Beberapa molekul adhesi sel, termasuk presepsin, molekul diferensiasi cluster-64
 
 #### Presepin
 
-Presepsin (sCD14-ST) adalah protein yang terkait dengan pembelahan sel CD14, suatu bentuk reseptor lipopolisakarida (LPS) yang larut, yang mengenali pola molekuler terkait patogen (PAMP) dan memicu respons imun bawaan.[@Velissaris2021; @Kyriazopoulou2023] Ini menjelaskan peningkatan kadarnya menjadi spesifik pada infeksi bakteri, di mana mekanisme patogenetik yang mendasarinya diekspresikan melalui aksi LPS.
+Presepsin (sCD14-ST) adalah protein yang terkait dengan pembelahan sel CD14, suatu bentuk reseptor lipopolisakarida (LPS) yang larut, yang mengenali *pathogen associated molecular pattern* (PAMP) dan memicu respons imun bawaan.[@Velissaris2021; @Kyriazopoulou2023] Ini menjelaskan peningkatan kadarnya menjadi spesifik pada infeksi bakteri, di mana mekanisme patogenetik yang mendasarinya diekspresikan melalui aksi LPS. Presepsin memiliki spesifisitas dan sensitivitas yang baik pada sepsis dan berkorelasi dengan mortalitas di rumah sakit pada pasien dengan sepsis dan syok septik, dengan potensi diagnostik yang dapat meningkat jika digabungkan dengan parameter klinis.[@Wu2017] Meskipun literatur mendukung peran potensialnya, beberapa penelitian tidak menunjukkan keunggulan presepsin dibandingkan dengan biomarker lain dalam hal sensitivitas dan spesifisitas.[@Romualdo2014] Performa diagnostik Presepin dirangkum pada tabel [-@tbl-presepin].
 
-Presepsin tampaknya memiliki spesifisitas dan sensitivitas yang baik pada sepsis dan berkorelasi dengan mortalitas di rumah sakit pada pasien dengan sepsis dan syok septik, dengan potensi diagnostik yang dapat meningkat jika digabungkan dengan parameter klinis. Selama keadaan infeksi bakteri, konsentrasi nilai absolut meningkat dalam waktu 2 jam. Presepsin adalah satu-satunya biomarker yang jika tetap meningkat pada pasien dengan infeksi barkteri hal ini dapat dikaitkan dengan risiko kematian yang lebih tinggi selama masa perawatan.[@Wu2017] Namun, meskipun literatur mendukung peran potensialnya di UGD dan dalam perawatan intensif, beberapa penelitian tidak menunjukkan keunggulan presepsin dibandingkan dengan biomarker lain dalam hal sensitivitas dan spesifisitas.[@Romualdo2014]
+```{r}
+#| label: tbl-presepin
+#| tbl-cap: "Data performa diagnostik Presepin sebagai marker infeksi bakteri pada pasien dewasa dengan febrile neutropenia."
+
+presepin <- googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1W8dIyIs-BTYasFA3WDrca2_leGlS1R4sMpscfRQcShY/edit?gid=0#gid=0", sheet = "presepin")
+
+dt_presepin <- presepin %>% 
+  dplyr::mutate(
+    Sensitivitas = Sensitivitas * 100,
+    Spesifisitas = Spesifisitas * 100
+  ) %>%
+  gt() %>% 
+  gt_plt_bar_pct(
+    Sensitivitas,
+    labels = TRUE,
+    scaled = TRUE
+  ) %>%
+  gt_plt_bar_pct(
+    Spesifisitas,
+    labels = TRUE,
+    fill = "forestgreen",
+    scaled = TRUE
+  )
+
+dt_presepin
+```
 
 #### STREM-2
 
-*Triggering receptor expressed on myeloid cells 1* (TREM-1) adalah reseptor imun bawaan yang memainkan peran penting dalam amplifikasi respon imun bawaan terhadap infeksi dengan menstimulasi pelepasan sitokin pro-inflamasi.[@Smok2020] sTREM-1 dilepaskan dari monosit/makrofag dan neutrofil selama aktivasi. Adanya infeksi bakteri meningkatkan kadar sTREM-1. Bentuk larut dari reseptor ini, sTREM-1, dilepaskan dari membran sel dan disekresi ke dalam sirkulasi selama infeksi.[@Esposito2016; @Balanza2020]
-
-Tinjauan sistematis dan meta-analisis baru-baru ini mengevaluasi peran potensial sTREM sebagai pendukung dalam diagnosis infeksi bakteri. Namun, sensitivitas rendah dan spesifisitas sedang untuk sTREM-1 dalam membedakan etiologi infeksi bakteri atau virus telah dilaporkan sehingga mengurangi potensi manfaat klinisnya.[@Esposito2016]
+*Triggering receptor expressed on myeloid cells 1* (TREM-1) adalah reseptor imun bawaan yang memainkan peran penting dalam amplifikasi respon imun bawaan terhadap infeksi dengan menstimulasi pelepasan sitokin pro-inflamasi.[@Smok2020] sTREM-1 dilepaskan dari monosit/makrofag dan neutrofil selama aktivasi. Adanya infeksi bakteri meningkatkan kadar sTREM-1. Bentuk larut dari reseptor ini, sTREM-1, dilepaskan dari membran sel dan disekresi ke dalam sirkulasi selama infeksi.[@Esposito2016; @Balanza2020] Tinjauan sistematis dan meta-analisis baru-baru ini mengevaluasi peran potensial sTREM sebagai pendukung dalam diagnosis infeksi bakteri. Namun, sensitivitas rendah dan spesifisitas sedang dalam membedakan etiologi infeksi oleh karena bakteri atau virus mengurangi potensi manfaat klinisnya.[@Esposito2016]
 
 ## Pilihan Biomarker Infeksi Bakteri pada Febril Neutropenia
 
-Keterbatasan kecepatan dan sensitivitas kultur darah telah meciptakan usaha untuk menemukan penanda biomarker inflamasi, seperti *C-reactive Protein*, interleukin-6 dan interleukin-8, dan prokalsitonin, sebagai penanda potensial untuk memandu keputusan penggunaan antimikroba.[@taplitz2018] Dalam pedoman IDSA tahun 2011, data pada saat itu tidak cukup untuk merekomendasikan penggunaan rutin biomarker serum ini.[@Freifeld2011] Saat ini sudah terdapat data dari tinjauan sistematis dengan metaanalisis yang melaporkan perkiraan akurasi diagnostik untuk biomarker prokalsitonin untuk diagnosis bakteremia. Dalam analisis subkelompok terhadap 320 pasien immunocompromised/neutropenic, area di bawah kurva (AUC) adalah 0,71 untuk memprediksi bakteremia (AUC 0,70 hingga 0,80 dianggap sebagai tingkat akurasi diagnostik yang baik). Sensitivitasnya adalah 66% (95% CI, 54% hingga 76%) dan spesifisitasnya adalah 78% (95% CI ,71% hingga 83%), namun dengan tingkat heterogenitas statistik yang tinggi (I2= 76%). Nilai batas prokalsitonin yang optimal adalah 0,5 ng/mL dan berhubungan dengan sensitivitas 76% dan spesifisitas 69% (Tabel pada gambar [-@fig-hoeber2015]) .[@Hoeboer2015]
+Keterbatasan kecepatan dan sensitivitas kultur darah telah meciptakan usaha untuk menemukan penanda biomarker inflamasi, seperti *C-reactive Protein*, interleukin-6 dan prokalsitonin sebagai penanda potensial untuk menjadi pedoman dalam memutuskan penggunaan antibiotik dalam kondisi febrile neutropenia.[@taplitz2018] Dalam pedoman IDSA tahun 2011, data pada saat itu tidak cukup untuk merekomendasikan penggunaan rutin biomarker serum ini.[@Freifeld2011] Saat ini sudah terdapat data dari metaanalisis yang melaporkan akurasi diagnostik untuk biomarker tersebut untuk diagnosis infeksi bakteri pada kondisi febrile neutropenia. Dalam analisis 320 pasien immunokompromain (neutropenia), prokalsitonin memiliki area di bawah kurva (AUC) 0,71 untuk memprediksi bakteremia (AUC 0,70 hingga 0,80 dianggap sebagai tingkat akurasi diagnostik yang baik). Nilai batas prokalsitonin yang optimal adalah 0,5 ng/mL dengan sensitivitas 76% dan spesifisitas 69% namun dengan tingkat heterogenitas statistik yang tinggi (I^2^= 76%). (Tabel pada gambar [-@fig-hoeber2015]) .[@Hoeboer2015]
 
-![*Summary Receiver Operating Characteristic* (SROC) prokalsitonin untuk diagnosis bakteremia(58 penelitian). Masing-masing penelitian hasil ditampilkan sebagai lingkaran terbuka. Poin ringkasannya adalah ditampilkan sebagai kotak tertutup, mewakili perkiraan sensitivitas yang dikumpulkan oleh menggunakan model regresi efek acak bivariat. Area di bawah Kurva SROC (garis putus-putus) adalah 0,79, sensitivitas dan spesifisitas gabungan adalah 76%. adalah 69%. Wilayah kepercayaan 95% menampilkan interval kepercayaan 95%. dari sensitivitas dan spesifisitas yang dikumpulkan. Wilayah prediksi 95% adalah wilayah untuk perkiraan sensitivitas dan spesifisitas sebenarnya dalam penelitian masa depan.](image/ROC_procalcitonin.png){#fig-hoeber2015 fig-align="center"}
+![*Summary Receiver Operating Characteristic* (SROC) prokalsitonin untuk diagnosis bakteremia(58 penelitian). Masing-masing penelitian hasil ditampilkan sebagai lingkaran. *summary value* ditampilkan dengan simbol kotak hitam yang mewakili perkiraan sensitivitas.](image/ROC_procalcitonin.png){#fig-hoeber2015 fig-align="center"}
 
-Prokalsitonin merupakan penanda biologis infeksi bakteri dan sepsis serta telah digunakan secara luas bersama dengan penilaian klinis untuk memandu terapi antibiotik yang lebih selektif.[@chaftari2021] Penelitian terkait prokalsitonin pada awalnya intensif dilakukan khususnya untuk pasien dengan infeksi saluran pernapasan bawah, namun saat ini diadopsi pada berbagai kondiri infeksi terlepas dari sumber fokus infeksi.[@Tonkin-Crine2017; @chaftari2021] Pengukuran serial kadar PCT ditemukan memiliki nilai prognostik dimana kegagalan penurunan PCT selama terapi sepsis dapat memprediksi luaran yang buruk.[@Schuetz2017] Meskipun telah ditemukan bahwa kadar PCT dapat meningkat pada pasien dengan keganasan tanpa infeksi, kadar PCT dapat meningkat lebih lanjut pada pasien keganasan yang mengalami bakteremia atau sepsis.[@Chaftari2015] Pada penelitian oleh Charftari et al, procalcitonin ditemukan memiliki nilai diagnostik yang lebih baik dibandingkan sistem skoring dari *Multinational Association for Supportive Care in Cancer* (MASCC) maupun laktat untuk mendiferensiasi pasien febril neutropenia dengan bakteremia (*blood stream infection*). Pada kurva ROC gambar [-@fig-chaftari] menunjukan bahwa kadar PCT merupakan prediktor bakteremia yang secara signifikan lebih baik dibandingkan skor MASSC (p = 0,003) atau kadar laktat (p \<0,0001). Untuk memprediksi BSI, area di bawah kurva ROC adalah 0,76 (95% interval kepercayaan \[CI\], 0,71--0,81) untuk tingkat PCT, 0,65 (95% CI, 0,59--0,71) untuk skor MASSC, dan 0,56 (95% CI, 0,49--0,62) untuk kadar laktat. Kadar PCT ≥0,25 ng/ml memiliki nilai sensitivitas 0.78 (0.69--0.84), spesifisitas 0.59 (0.54--0.63), PPV 0.34 (0.28--0.40) dan NPV 0.91 (0.87--0.94) untuk bakteremia, sedangkan skor MASCC memiliki sensitivitas 0.74 (0.65--0.81), spesifisitas 0.44 (0.39--0.48),PPV 0.26 (0.22--0.31) dan NPV 0.86 (0.81--0.90). Selain itu, kombinasi kadar PCT ≥0,25 ng/ml ditambah kadar laktat \>2,2 mmol/L memiliki sensitivitas 0.77 (0.68--0.84), spesifisitas 0.54 (0.50--0.59), PPV 0.31 (0.26--0.36) dan NPV 0.90 (0.86--0.93) untuk prediksi bakteremia dan sensitivitas 0.93 (0.70--0.99), spesifisitas 0.49 (0.45--0.54), PPV 0.05 (0.03--0.08) dan NPV 1.00 (0.98--1.00) untuk prediksi mortalitas dalam 14 hari. Selain itu kadar PCT ≥0,25 ng/ml merupakan prediktor untuk lama rawat \>7 hari.[@chaftari2021]
+Prokalsitonin merupakan penanda biologis infeksi bakteri dan sepsis serta telah digunakan secara luas bersama dengan penilaian klinis untuk menjadi acuan terapi antibiotik yang lebih selektif.[@chaftari2021] Penelitian terkait prokalsitonin pada awalnya intensif dilakukan pada pasien dengan infeksi saluran pernapasan bawah, namun saat ini diadopsi pada berbagai kondisi infeksi.[@Tonkin-Crine2017; @chaftari2021] Pengukuran serial kadar PCT ditemukan memiliki nilai prognostik dimana kegagalan penurunan PCT selama terapi sepsis dapat memprediksi luaran yang buruk.[@Schuetz2017] Meskipun telah ditemukan bahwa kadar PCT dapat meningkat pada pasien dengan keganasan tanpa infeksi, kadar PCT dapat meningkat lebih lanjut pada pasien keganasan yang mengalami bakteremia atau sepsis.[@Chaftari2015] Pada penelitian oleh Charftari dkk, procalcitonin ditemukan memiliki nilai diagnostik yang lebih baik dibandingkan sistem skoring dari *Multinational Association for Supportive Care in Cancer* (MASCC) maupun laktat untuk mendiferensiasi pasien febril neutropenia dengan bakteremia (*blood stream infection*). Pada kurva ROC gambar [-@fig-chaftari] menunjukan bahwa kadar PCT merupakan prediktor bakteremia yang secara signifikan lebih baik dibandingkan skor MASSC (p = 0,003) atau kadar laktat (p \<0,0001). Kadar PCT ≥0,25 ng/ml memiliki nilai sensitivitas 78%, spesifisitas 59% untuk memprediksi bakteremia, sedangkan skor MASCC memiliki sensitivitas 74%, spesifisitas 44%. Selain itu, kombinasi kadar PCT ≥0,25 ng/ml ditambah kadar laktat \>2,2 mmol/L memiliki sensitivitas 77%, spesifisitas 54% untuk prediksi bakteremia. Selain itu, kedua biomarker ini memiliki sensitivitas 93% dan spesifisitas 49% untuk memprediksi mortalitas dalam 14 hari. Selain itu kadar PCT ≥0,25 ng/ml merupakan prediktor untuk lama rawat \>7 hari.[@chaftari2021]
 
 ![Performa diagnostik dari Prokalsitonin dibandingkan dengan skor MASCC dan laktat](image/chaftrari_etal.png){#fig-chaftari}
 
-Sebuah penelitian lain menemukan bahwa *lipopolysaccharide-binding protein* (LBP) memiliki akurasi diagnostik yang serupa dengan prokalsitonin atau IL-6 untuk diagnosis infeksi.[@García2015]
-
-LBP adalah protein fase akut yang berasal dari hati yang berperan penting dalam mekanisme imunitas bawaan. LBP berikatan dengan lipid A amphipathic dari bakteri lipo polisakarida (LPS), komponen dinding sel luar bakteri gram negatif dan mentransfer LPS ke protein CD14. Dengan memfasilitasi pengikatan pada molekul membran sel CD14, LBP meningkatkan sensitivitas makrofag dan sel lainnya. Sel yang tidak mengekspresikan CD14 yang terikat membran, seperti sel endotel, distimulasi dengan mengikat kompleks LPS dan bentuk CD14 yang dapat larut. CD14 hanya dapat mengikat LPS dengan adanya LBP, dan meskipun LPS dianggap sebagai ligan utama, CD14 juga mengenali komponen bakteri lain, termasuk proteoglikan bakteri gram positif. Dengan demikian, selain perannya dalam infeksi gram negatif, LBP mempunyai peran yang lebih luas sebagai molekul pengenalan umum. Pengikatan sinyal reseptor Toll-like (TLRs) pada sel efektor menyebabkan produksi sitokin inflamasi, seperti interleukin (IL)-6 dan interleukin-1 dan faktor nekrosis tumor alfa \[20\], dihasilkan dari pensinyalan LPS melalui TLR-4 dan pensinyalan proteoglikan melalui TLR-2.[@García2015]
-
-Episode neutropenia demam diklasifikasikan menjadi tiga kelompok:[@García2015]
-
-a\) Demam yang tidak diketahui asal usulnya (FUO), didefinisikan sebagai demam yang infeksinya tidak dapat dibuktikan secara klinis maupun radiologis dan hasil uji mikrobiologisnya negatif.
-
-b\) Infeksi yang terdokumentasi secara klinis (Clinically Documented Infection/CDI), yaitu ketika terdapat tanda atau gejala klinis dan temuan radiologis atau/dan analitis dari suatu infeksi, namun tanpa bukti mikrobiologis.
-
-c\) Infeksi yang terdokumentasi secara mikrobiologis (MDI) yang meliputi bakteremia (microbiologically documented in fection with bacteremia (MDIB)) dan infeksi lokal yang terdokumentasi secara mikrobiologis tanpa darah positif kultur (infeksi yang didokumentasikan secara mikrobiologis tanpa bakteremia (MDInB).
-
-Selama masa penelitian Garcia et al, 61 episode kemoterapi terkait neutropenia demam didokumentasikan pada 58 pasien. Mayoritas episode, 42 (70,5%), diklasifikasikan memiliki risiko komplikasi yang rendah (MASCC ≥21). Median CRP, PCT, IL-6, dan LBP secara signifikan lebih tinggi pada pasien dengan infeksi, termasuk CDI dan MDI (MDIB atau tanpa MDInB), dibandingkan dengan pasien dengan FUO (125 mg/L (125) vs. 44 mg/L ( 55), p\<0,01; 0,52 ng/mL (1,34) vs. 0,10 ng/mL (0,09), p\<0,01; μg/mL (27,7) vs. 16,1 μg/mL (12,0) (@fig-LBP). Pada pasien dengan infeksi, perbedaan konsentrasi biomarker tidak terdeteksi antara CDI dan MDI. Di antara pasien dengan MDI, tidak ada perbedaan signifikan dalam tingkat biomarker yang diamati antara MDInB dan MDIB. Pada episode dengan bakteremia gram negatif, konsentrasi median dari semua biomarker yang diteliti lebih tinggi dibandingkan pada pasien dengan bakteremia gram positif.[@García2015]
-
-Walaupun telah banyak temuan biomarker yang mendukung sebagai penanda infeksi bakteri, pedoman terbaru dari *American Society of Clinical Oncology* (ASCO) menyimpulkan bahwa diperlukan lebih banyak penelitian sebelum biomarker seperti prokalsitonin atau LBP dapat direkomendasikan sebagai alat yang efektif untuk menentukan apakah antibiotik diperlukan atau ditunda pada kasus febrile neutropenia.[@taplitz2018]
 
 ```{r}
+#| label: tbl-lbp
+#| tbl-cap: "Data performa diagnostik Lipid Binding Protein sebagai marker infeksi bakteri pada pasien dewasa dengan febrile neutropenia."
 
+lbp <- googlesheets4::read_sheet("https://docs.google.com/spreadsheets/d/1W8dIyIs-BTYasFA3WDrca2_leGlS1R4sMpscfRQcShY/edit?gid=0#gid=0", sheet = "lbp")
+
+dt_lbp <- lbp %>% 
+  dplyr::mutate(
+    Sensitivitas = Sensitivitas * 100,
+    Spesifisitas = Spesifisitas * 100
+  ) %>%
+  gt() %>% 
+  gt_plt_bar_pct(
+    Sensitivitas,
+    labels = TRUE,
+    scaled = TRUE 
+  ) %>%
+  gt_plt_bar_pct(
+    Spesifisitas,
+    labels = TRUE,
+    fill = "forestgreen",
+    scaled = TRUE
+  )
+
+dt_lbp
 ```
+
+Sebuah penelitian lain menemukan bahwa *lipopolysaccharide-binding protein* (LBP) memiliki akurasi diagnostik yang serupa dengan prokalsitonin atau IL-6 untuk diagnosis infeksi (tabel [-@tbl-lbp]).[@García2015] LBP adalah protein fase akut yang disintesis pada liver dan berperan penting dalam mekanisme imunitas bawaan. LBP berikatan dengan lipid A amphipathic dari lipopolisakarida bakteri (LPS) yakni komponen dinding sel luar bakteri gram negatif dan mentransfer LPS ke protein CD14. Dengan memfasilitasi pengikatan pada molekul membran sel CD14, LBP meningkatkan sensitivitas makrofag dan sel lainnya. Sel yang tidak mengekspresikan CD14 seperti sel endotel juga mendapatkan sinyal aktivasi dengan mengikat kompleks LPS dengan protein CD14 yang dapat larut. CD14 hanya dapat mengikat LPS dengan adanya LBP. Meskipun LPS dianggap sebagai ligan utama, CD14 juga mengenali komponen bakteri lain, termasuk proteoglikan bakteri gram positif. Hal ini menunjukan perannya dalam aktivitas imun terhadap infeksi bakteri gram negatif.[@García2015]
 
 [![Kadar CPR, Il-6, Procalcitonin dan LBP pada pasien neutropenia dengan dan tanpa sumber infeksi yang dikonfirmasi](image/LBP_PCT_CPR.png){#fig-LBP .lightbox fig-align="center"}](https://link.springer.com/article/10.1007/s00520-014-2589-1)
 
-Kurva ROC dihasilkan untuk tingkat PCT, IL-6, dan PCT saat masuk, dan AUC ROC menunjukkan kekuatan diskriminatif individu yang baik untuk PCT (0,88, interval kepercayaan 95% \[CI95%\] 0,80--0,97; p\<0,01), IL- 6 (0,82, CI95 % 0,71--0,92; p\<0,01) dan LBP (0,82, CI95 % 0,71--0,93; p\<0,01), masing-masing.[@García2015]
+Selama masa penelitian Garcia dkk, melibatkan 58 pasien dengan febrile neutropenia menemukan bahwa mayoritas sebanyak 42 (70,5%) kasus diklasifikasikan memiliki risiko komplikasi yang rendah (MASCC ≥21). Median CRP, PCT, IL-6, dan LBP secara signifikan lebih tinggi pada pasien dengan infeksi, termasuk CDI dan MDI (MDIB atau tanpa MDInB), dibandingkan dengan pasien dengan FUO (125 mg/L (125) vs. 44 mg/L ( 55), p\<0,01; 0,52 ng/mL (1,34) vs. 0,10 ng/mL (0,09), p\<0,01; μg/mL (27,7) vs. 16,1 μg/mL (12,0) (@fig-LBP). Pada pasien dengan infeksi, tidak ditemuakan perbedaan konsentrasi biomarker antara CDI dan MDI. Di antara pasien dengan MDI, tidak ada perbedaan signifikan dalam tingkat biomarker yang diamati antara MDInB dan MDIB. Pada kasus dengan bakteremia gram negatif, konsentrasi median dari semua biomarker yang diteliti lebih tinggi dibandingkan pada pasien dengan bakteremia gram positif.[@García2015] Kurva ROC dihasilkan untuk tingkat PCT, IL-6, dan PCT saat masuk, dan AUC ROC menunjukkan kekuatan diskriminatif yang baik untuk PCT (0,88, interval kepercayaan 95% \[CI95%\] 0,80--0,97; p\<0,01), IL- 6 (0,82, CI95 % 0,71--0,92; p\<0,01) dan LBP (0,82, CI95 % 0,71--0,93; p\<0,01).[@García2015]
 
 [![Niai AUC CPR, Il-6, Procalcitonin dan LBP pada pasien neutropenia dengan dan tanpa sumber infeksi yang dikonfirmasi](image/ROC_LBP.png){#fig-ROCLBP .lightbox fig-align="center"}](https://link.springer.com/article/10.1007/s00520-014-2589-1)
 
-## Ringkasan
+Walaupun telah banyak temuan biomarker yang mendukung sebagai penanda infeksi bakteri, pedoman terbaru dari *American Society of Clinical Oncology* (ASCO) menyimpulkan bahwa diperlukan lebih banyak penelitian sebelum biomarker seperti prokalsitonin atau LBP dapat direkomendasikan sebagai alat yang efektif untuk menentukan apakah antibiotik diperlukan atau ditunda pada kasus febrile neutropenia.[@taplitz2018]
 
-Respon inflamasi adalah mekanisme kompleks dimana banyak faktor biokimia dan imunologi berkontribusi terhadap respon *host* pada infeksi bakteri. Menyempurnakan biomarker dapat bermanfaat dalam penatalaksanaan febrile neutropenia sehingga peresepan dan dosis antibiotik lebih tepat. CRP dan prokalsitonin masih merupakan biomarker yang paling banyak digunakan di UGD untuk diagnosis infeksi bakteri. Sensitivitas keduanya meningkat jika digabungkan sehingga masuk akal untuk mempertimbangkan keduanya dalam evaluasi pasien dengan keluhan utama demam.
+## Simpulan
+
+Respon inflamasi adalah mekanisme kompleks dimana banyak faktor biokimia dan imunologi berkontribusi terhadap respon *host* pada infeksi bakteri. Menyempurnakan biomarker dapat bermanfaat dalam penatalaksanaan febrile neutropenia sehingga pemberian antibiotik dapat lebih tepat sehingga dapat menurunkan risiko resistensi antibiotik. CRP dan prokalsitonin masih merupakan biomarker yang paling banyak digunakan untuk diagnosis infeksi bakteri. Sensitivitas keduanya meningkat jika digabungkan sehingga rasional untuk mempertimbangkan keduanya dalam evaluasi pasien dengan keluhan utama demam disertai neutropenia.
